@@ -1,0 +1,393 @@
+@import 'config';
+@import 'menu';
+
+
+*{
+    box-sizing: border-box;
+}
+body{
+    @include background;
+    background: $primary-color;
+    color: set-text-color($primary-color);
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+}
+h1, h2, h3{
+    margin: 0;
+    font-weight: 400;
+
+    &.lg-heading{
+        font-size: 6rem;
+    }
+
+    &.sm-heading{
+        margin-bottom: 2rem;
+        text-transform: capitalize;
+        padding: .2rem 1rem;
+        background: rgba(lighten($primary-color, 2.5),0.5);
+    }
+}
+a{
+    color: #fff;
+    text-decoration: none;
+
+}
+header{
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+
+}
+.text-secondary{
+    color: $secondary-color;
+}
+main{
+    padding: 4rem;
+    // height: 100%;
+    min-height: calc(100vh - 60px);
+
+    .icons{
+        margin-top: 1rem;
+
+        a{
+            padding: .4rem;
+
+            &:hover{
+                color: $secondary-color;
+                @include easeOut();
+            }
+        }
+    }
+    &#home{
+        overflow: hidden;
+        h1{
+            margin-top: 20vh;
+        }
+    }
+}
+.about-info{
+    display: grid;
+    grid-gap: 30px;
+    grid-template-areas: 
+    'bioimage bio bio'
+    'job1 job2 job3';
+    grid-template-columns: repeat(3, 1fr); 
+    
+    
+    .bio-image{
+        grid-area: bioimage;
+        margin: auto;
+        margin-left: 20%;
+        border-radius: 60%;
+        border: 3px solid $secondary-color;
+        transition: all .2s;
+        opacity: 1;
+        text-transform: uppercase;
+
+        @media(max-width: 900px){
+            margin-top: 4rem;
+            margin-left: 0;
+        }
+        @media(max-width: 1000px){
+            margin-top: 4rem;
+            margin-left: 0;
+        }
+        &:hover{
+            opacity: 1;
+            text-transform: uppercase;
+
+        }
+    }
+    .bio{
+        grid-area: bio;
+        font-size: 1.5rem;
+    }
+    .job-1{
+        grid-area: job1;
+    }
+    .job-2{
+        grid-area: job2
+    }
+    .job-3{
+        grid-area: job3
+    }
+    .job{
+        background: lighten($primary-color, 5);
+        padding: .5rem;
+        border-bottom: $secondary-color 5px solid;
+    }
+}
+h6{
+    font-size: .8rem;
+}
+// work page on projects
+.projects{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: .7rem;
+
+    &:hover{
+        .overview{
+            display: block;
+        }
+    }
+    
+    .item{
+        position: relative;
+
+        .overview{
+            width: 75%;
+            height: 53%;
+            border: transparent solid 1px;
+            position: absolute;
+            top: 10%;
+            left: 12%;
+            display: none;
+            
+            .title{
+                text-align: center;
+                padding: 5px;
+                margin: 5px 5px 5px 17%;
+                
+
+                .heading{
+                    width: 70%;
+                    text-transform: uppercase;
+                    font-size: 18px;
+                    font-weight: 600; 
+                    color: #fff;
+                    text-decoration: underline;
+                }
+            }
+            .summary{
+                // border: 1px solid green;
+                padding: 5px;
+                margin: 25px 7% 5px 7%;
+                padding: 5px;
+
+                .description{
+                    font-family: sans-serif;
+                    color: $secondary-color;
+                    font-size: 17px;
+                }
+            }
+        }
+    
+    }
+
+    
+    img{
+        width: 100%;
+        border: 3px solid #fff;
+
+        &:hover{
+            opacity: .2;
+            border-color: $secondary-color;
+            @include easeOut;
+
+        }
+    }
+}
+.template-heading{
+    letter-spacing: 3px;
+    text-align: center;
+    margin-top: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    transition: all 1s;
+
+    &:hover{
+        color: $secondary-color;
+    }
+}
+.template{
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+
+    &--item{
+        position: relative;
+        height: 500px;
+
+        .overview{
+            // width: 50%;
+            // height: 50%;
+            border: transparent solid 1px;
+            position: absolute;
+            top: 50%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            // display: none;
+            
+            .title{
+                text-align: center;
+                padding: 5px;
+                margin: 5px 5px 5px 17%;
+                animation-name: moveInTop;
+                animation-duration: 2s;
+                animation-delay: 1s;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-out;
+
+                .heading{
+                    width: 70%;
+                    text-transform: uppercase;
+                    font-size: 25px;
+                    font-weight: bold;
+                    font-family: sans-serif;
+                    letter-spacing: 1.5px; 
+                    color: #fff;
+                    text-decoration: underline;
+                }
+            }
+            .summary{
+                position: absolute;
+                top: 49.5%;
+                left: 32%;
+
+               
+                .button{
+                    padding: 2px;
+                    width: 130px;
+                    height: 40px;
+                    text-transform: uppercase;
+                    font-family: sans-serif;
+                    color: #fff;
+                    font-size: 20px;
+                    font-weight: bold;
+                    border-radius: 20px;
+                    background-color: $primary-color;
+                    border: none;
+                    cursor: pointer;
+                    outline: none;
+                    animation-name: moveInBottom;
+                    animation-duration: 2s;
+                    animation-delay: 1s;
+                    animation-iteration-count: 1;
+                    animation-timing-function: ease-out;
+                }
+            }
+        }
+    }
+
+        img{
+            border: 2px solid #fff;
+            width: 100%;
+            transition: all .5s;
+
+            &:hover{
+                opacity: 0.2;
+                border: 3px solid $secondary-color;
+                // transform: translateX(-5px);
+            }
+        }
+}
+//contact page
+.boxes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1rem;
+
+    div{
+        font-size: 2rem;
+        border: 3px #fff solid;
+        padding: 1.5rem 2.5rem;
+        margin-bottom: 3rem;
+        @include easeOut;
+        
+        &:hover{
+            padding: .5rem 1rem;
+            background: $secondary-color;
+            color: set-text-color($secondary-color);
+
+            span{
+                color: set-text-color($secondary-color);
+            }
+        }
+    }
+}
+//button styles
+.btn{
+    display: block;
+    padding: .5rem 1rem;
+    border: 0;
+    margin-bottom: .3rem;
+
+    &:hover{
+        background: $secondary-color;
+        color: set-text-color($secondary-color);
+    }
+}
+.btn-dark{
+    @extend .btn;
+    background: darken($primary-color, 50);
+    color: #fff;
+}
+.btn-light{
+    @extend .btn;
+    background: lighten($primary-color, 50);
+    color: #333;
+}
+#main-footer{
+    text-align: center;
+    padding: 1rem;
+    background: darken($primary-color, 10);
+    color: set-text-color($primary-color);
+    height: 60px;
+}
+
+.image{
+    position: relative;
+    text-transform: uppercase;
+
+
+    &__name{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+    }
+}
+@keyframes moveInLeft{
+    0%{
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    80%{
+        transform: translateX(20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(100px);
+    }
+}
+@keyframes moveInBottom{
+    0% {
+        opacity: 0;
+        transform: translateY(5rem); /*3rem*/
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+@keyframes moveInTop{
+    0% {
+        opacity: 0;
+        transform: translateY(-5rem); /*3rem*/
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+@import 'mobile';
